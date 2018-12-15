@@ -38,7 +38,6 @@ class Agency(Resource):
             _doctorname = _content["sign_of_prescription_medical_practitioner"]
             _doctortype = _content["license_type"]
             _doctornum = _content["license_number"]
-            print(1)
             _mediname = []
             _medidose = []
             _medidailydose = []
@@ -52,7 +51,6 @@ class Agency(Resource):
                 _meditotalday.append(data["total_dosing_days"])
                 _mediusage.append(data["usage"])
                 _mediinside.append(data["inside"])
-            # print(_content["injection_prescription"]["preparation_amount"])
             _usepreiod = _content["injection_prescription"]["period_of_use"]
             _dispensename = _content["injection_prescription"]["preparation"]["name_of_dispenser"]
             _pharmacistname = _content["injection_prescription"]["preparation"]["pharmacist"]["name"]
@@ -60,8 +58,6 @@ class Agency(Resource):
             _preparationamount = _content["injection_prescription"]["preparation_amount"]
             _preparationyear = _content["injection_prescription"]["year_of_preparation"]
             _changeprescription = _content["injection_prescription"]["change_of_prescription"]
-            # print(3)
-            # print(_pharmacistname)
             return {'su': 200}
 
         except Exception as e:
