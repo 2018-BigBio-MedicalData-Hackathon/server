@@ -8,14 +8,14 @@
 from flask import Flask, request, jsonify, json
 from flask_restful import reqparse, Api, Resource
 import config
-# import dbconnect
+import dbconnect
 
 app = Flask(__name__)
 api = Api(app)
 
 # MySQL 연결
-# cursor = dbconnect.cursor
-# conn = dbconnect.conn
+cursor = dbconnect.cursor
+conn = dbconnect.conn
 
 
 # /Agency 구현
@@ -26,7 +26,8 @@ class Agency(Resource):
             # json 데이터 post로 받아서 변수 저장
             _content = request.get_json()
             _insurance = _content['insurance']
-            _nursesgin = _content['nursing_institution_sign']
+            _nursesign = _content['nursing_institution_sign']
+            _grantnum = _content['grant_number']
             _patientname = _content['patient']['name']
             _patientreginum = _content['patient']['registration_number']
             _insname = _content["medical_Institutions"]["name"]
@@ -58,7 +59,31 @@ class Agency(Resource):
             _preparationamount = _content["injection_prescription"]["preparation_amount"]
             _preparationyear = _content["injection_prescription"]["year_of_preparation"]
             _changeprescription = _content["injection_prescription"]["change_of_prescription"]
-            return {'su': 200}
+            
+            _query = "INSERT INTO prescription(insurance, nurse_sign, grant_num, patient_name, patient_reginum, ins_name, ins_phonenum, ins_fax, ins_email, diseasecode_1, diseasecode_2, doctor_name, doctor_type, doctor_num, medi_name, medi_dose, medi_dailydose, medi_totalday, medi_usage, medi_inside, period_use, dispenser_name, pharmacist_name, pharmacist_seal, preparation_amount, year_preparation, change_prescription) values( %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s)"
+            print(_query)
+            _value = (_insurance ,_nursesign, _grantnum, _patientname ,_patientreginum ,_insname , _insphonenum , _insfaxnum , _insemail ,str(_diseasecode1) ,str(_diseasecode2),_doctorname , _doctortype , _doctornum ,str(_mediname) ,str(_medidose) ,str(_medidailydose) ,str(_meditotalday) , str(_mediusage) ,str(_mediinside) ,_usepreiod ,_dispensename ,_pharmacistname , _pharmacistseal , _preparationamount ,_preparationyear , _changeprescription )
+            print(_value)
+            cursor.execute(_query, _value)
+            _data = cursor.fetchall()
+            print(_data)
+            if not _data:
+                conn.commit()
+                return {"Register Success": 200}
+            else:
+                conn.rollback()
+                return {"Register Failed": 404}
 
+        except Exception as e:
+            return {'error': e}
+        
+    def get(self):
+        try:
+            # json 데이터 post로 받아서 변수 저장
+            _query = "select * from prescription"
+            print(_value)
+            cursor.execute(_query)
+            _data = cursor.fetchall()
+            print(_data)
         except Exception as e:
             return {'error': e}

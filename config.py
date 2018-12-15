@@ -1,7 +1,7 @@
 _DB_CONF = {
-    'host': 'localhost',
+    'host': '133.186.151.122',
     'port': 3306,
     'user': 'root',
-    'passwd': '123456',
+    'passwd': 'root',
     'db': 'biodb'
 }
