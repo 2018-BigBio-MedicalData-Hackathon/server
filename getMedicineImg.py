@@ -33,7 +33,7 @@ def getDriver(url):
 
 def getImg(medicineName):
 
-    # 약학정보원
+    # 약학정보원 검색 페이지
     driver = getDriver('http://www.health.kr/searchDrug/search_detail.asp')
 
     # 약품명 입력
@@ -45,8 +45,7 @@ def getImg(medicineName):
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
 
-    # data=[]
-    data=soup.select('#tbl_proY > tbody > tr > td > img')#tbl_proY > tbody > tr:nth-child(2)
+    data=soup.select('#tbl_proY > tbody > tr > td > img')
     
     for img in data:
         return medicineName, img.get("src")
@@ -55,7 +54,7 @@ if __name__ == '__main__':
     medicines=['프레드포르테점안액', '오큐시클로점안액', '솔로젠정', '록소젠정', '파모시드정20mg']
     for name in medicines:
         print(getImg(name))
-    """
+    """ 출력예시
     >>> ('프레드포르테점안액', '/images/img_empty3.jpg')
     >>> ('오큐시클로점안액', 'http://www.health.kr/images/ext_images/pack_img/P_A11ABBBBB0306_AA.jpg')
     >>> ('솔로젠정', 'http://www.pharm.or.kr/images/sb_photo/big3/A11AMMMMM284404.jpg')
