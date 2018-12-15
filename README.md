@@ -56,7 +56,7 @@
   - change of prescription : string
 
   example
-  ```markdown
+```markdown
 {
   "insurance" : "1" , //1 - 의료보험, 2 - 의료급여, 3 - 산재보험, 4 - 자동차보험, 5 - 기타 )
   "nursing_institution_sign" : "346454",
