@@ -55,21 +55,22 @@ class Login(Resource):
             # 회원 id verify
             _password = makepasswd(_password, _salt)
             print(_userid, _password)
-            _query = "select user_id from user where user_pw='%s'" % (_password)
-            cursor.execute(_query)
-            _data = cursor.fetchone()
-            print(_data[0])
-            if _data[0] != _userid:
-                return {"id and password are wrong": 401}
+            # _query = "select user_id from user where user_pw='%s'" % (_password)
+            # cursor.execute(_query)
+            # _data = cursor.fetchone()
+            # print(_data[0])
+            # if _data[0] != _userid:
+            #     return {"id and password are wrong": 401}
 
             # 회원 password verify 
-            _query = "select user_pw from user where user_id=%s" % (_userid)
+            _query = "select user_pw from user where user_id='%s'" % (_userid)
+            print(_query)
             cursor.execute(_query)
             newpassword = cursor.fetchone()[0]
             print(newpassword)
             if(_password == newpassword):
                 print("login success")
-                return {"login Success": 200}
+                return 200
             else:
                 return {"login fail": 401}
             return Response("login success")

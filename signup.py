@@ -65,13 +65,13 @@ class Signup(Resource):
             print(3)
             print(_email)
 
-            # user 중복체크
-            _query = "select 1 from user where user_pw=%s" % (_password)
-            cursor.execute(_query)
-            _data = cursor.fetchall()
-            print(_data)
-            if _data:
-                return {"duplicate": 401}
+            # # user 중복체크
+            # _query = "select 1 from user where user_pw=%s" % (_password)
+            # cursor.execute(_query)
+            # _data = cursor.fetchall()
+            # print(_data)
+            # if _data:
+            #     return {"duplicate": 401}
 
 
             # 비밀번호 체크
