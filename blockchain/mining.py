@@ -20,7 +20,6 @@ def mine():
         recipient=node_identifier,
         amount=1,
     )
-    
     #
     previous_hash = blockchain.hash(last_block)
     block = blockchain.new_block(proof, previous_hash)
