@@ -6,8 +6,6 @@ from uuid import uuid4
 
 from flask import Flask, jsonify, request 
 
-""""""
-
 @app.route('/mine', methods = ['GET'])
 def mine():
     #다음 블록의 proof 값을 얻어내기 위해 POW 알고리즘을 수행한다. 
