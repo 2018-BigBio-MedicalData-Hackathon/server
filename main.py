@@ -4,12 +4,14 @@ from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token,
     get_jwt_identity
 )
+from flask_cors import CORS
 import agency
 import signup
 import login
 # import license
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 jwt = JWTManager(app)
 
