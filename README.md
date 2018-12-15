@@ -52,5 +52,24 @@
      - status : true / false
      - message : string
 
+2. `get` MRI 발급 /send/mri/<userkey>
+3. - REQUEST
+     - 환자
+       - 성명
+       - 주민등록번호
+     - 의료기관
+       - 명칭
+       - 전화번호
+       - 팩스번호
+       - email 주소
+     - 질병분류기호
+     - 처방 의료인의 성명(디지털 날인)
+     - 면허 종별 (의사)
+     - 면허번호(제 53253 호)
+     - 발급년월일
+   - RESPONSE
+     - status : true / false
+     - message : string
+
 
 
