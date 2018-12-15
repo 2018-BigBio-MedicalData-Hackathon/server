@@ -68,7 +68,7 @@
     "medical_Institutions" : {
       "name" : "서울대병원",
       "phone_number" : "010-8111-8888",
-      "Fax_number" : "02-853-4444",
+      "fax_number" : "02-853-4444",
       "email_address" : "snubi@snu.ac.kr"
     },
     "disease_classification_codes" : [{
