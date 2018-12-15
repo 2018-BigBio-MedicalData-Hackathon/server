@@ -38,48 +38,43 @@ class Login(Resource):
         try:
             # 지역변수로 로그인 폼 데이터 POST 받기 설정
             _parser = reqparse.RequestParser()
-            _parser.add_argument('userid', type=str)
-            _parser.add_argument('password', type=str)
+            _parser.add_argument('user_id', type=str)
+            _parser.add_argument('user_pw', type=str)
             _parser.add_argument('username', type=str)
-            _parser.add_argument('reginum', type=int)
+            _parser.add_argument('user_reginum', type=str)
             _parser.add_argument('phonenum', type=int)
             _parser.add_argument('email', type=str)
             _args = _parser.parse_args()
 
             # 변수에 할당
-            _userid = conn.escape_string(_args['userid'])
-            _password = conn.escape_string(_args['password'])
+            _userid = conn.escape_string(_args['user_id'])
+            _password = conn.escape_string(_args['user_pw'])
             _username = conn.escape_string(_args['username'])
-            _reginum = conn.escape_string(_args['reginum'])
+            _reginum = conn.escape_string(_args['user_reginum'])
             _phonenum = conn.escape_string(_args['phonenum'])
             _email = conn.escape_string(_args['email'])
+            _salt = salt()
+            _newpassword = makepasswd(_password, _salt)
 
-            # salt 데이터베이스에서 가져오기
-            _query = "select salt from user where username='%s'" % (_username)
-            cursor.execute(_query)
-            _data = cursor.fetchone()
-            _salt = _data[0]
-
-            # 회원 id verify
-            _password = makepasswd(_password, _salt)
-            print(_username, _password)
-            _query = "select username from user where passwd='%s'" % (_password)
-            cursor.execute(_query)
-            _data = cursor.fetchone()
-            print(_data[0])
-            if _data[0] != _username:
-                return {"id and password are wrong": 401}
-
-            # 회원 password verify 
-            _query = "select password from user where id='%s'" % (_username)
-            cursor.execute(_query)
-            newpassword = cursor.fetchone()[0]
-            if(_password == newpassword):
-                print("login success")
-                return {"login Success": 200}
+            # gender 구하기
+            if _reginum[6] == "1" or _reginum[6] == "3":
+                _gender = "male"
+            elif _reginum[6] == "2" or _reginum[6] == "4":
+                _gender = "female"
             else:
-                return {"login fail": 401}
-            return Response("login success")
+                return {"Register number Not valid": 404}        
+
+            _query = "INSERT INTO user(user_id, user_pw, salt, username, user_reginum, phonenum, email, gender) values(%s, %s, %s, %s, %d, %d, %s, %s)"
+            _value = (_userid, _newpassword, _username, int(_reginum), _phonenum, _email, _gender)
+            cursor.execute(_query, _value)
+            _data = cursor.fetchall()
+            print(_data)
+            if not _data:
+                conn.commit()
+                return {"Register Success": 200}
+            else:
+                conn.rollback()
+                return {"Register Failed": 404}
 
         except Exception:
             return {'error': 500}

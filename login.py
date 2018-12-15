@@ -38,13 +38,13 @@ class Login(Resource):
         try:
             # 지역변수로 로그인 폼 데이터 POST 받기 설정
             _parser = reqparse.RequestParser()
-            _parser.add_argument('userid', type=str)
-            _parser.add_argument('password', type=str)
+            _parser.add_argument('user_id', type=str)
+            _parser.add_argument('user_pw', type=str)
             _args = _parser.parse_args()
 
             # 변수에 할당
-            _userid = conn.escape_string(_args['userid'])
-            _password = conn.escape_string(_args['password'])
+            _userid = conn.escape_string(_args['user_id'])
+            _password = conn.escape_string(_args['user_pw'])
 
             # salt 데이터베이스에서 가져오기
             _query = "select salt from user where userid='%s'" % (_userid)
