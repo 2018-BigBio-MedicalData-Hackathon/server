@@ -55,7 +55,7 @@
     - year_of_preparation : string
   - change_of_prescription : string
 
-  example
+**example**
 ```markdown
 {
   "insurance" : "1" , //1 - 의료보험, 2 - 의료급여, 3 - 산재보험, 4 - 자동차보험, 5 - 기타 )
@@ -136,6 +136,8 @@
 - RESPONSE
   - status : true / false
   - message : string
+
+**example**
 ```markdown
 {
   status : false
@@ -209,7 +211,7 @@
   - issue_date : date
   - filelink : string
 
-  example
+**example**
 ```markdown
 {
   "patient" : [{
@@ -238,13 +240,14 @@
 - RESPONSE
   - status : true / false
   - message : string
-example
+
+**example**
 ```markdown
 {
   status : true
   message : "전송이 완료 되었습니다."
 }
 ```
-  
+
 
 
