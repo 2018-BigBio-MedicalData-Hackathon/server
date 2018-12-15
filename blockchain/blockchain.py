@@ -3,16 +3,15 @@ import json
 from textwrap import dedent
 from time import time
 from uuid import uuid4
-from flask import Flask
-
+from flask import Flask, jsonify, request
         
 class Blockchain(object):
     def __init__(self):
         self.current_transactions=[]
         self.chain=[]
-        
+        _content=[]
         #genesis block 생성
-        self.new_block(previous_hash=1, proof=100)
+        self.new_block(previous_hash=1, _content=_content, proof=100)
         
     def new_block(self, proof, _content, previous_hash=None):
         """
@@ -24,11 +23,14 @@ class Blockchain(object):
         """
         
         block = {
+            # basic info of block
             'index' : len(self.chain) + 1,
             'timestamp' : time(),
             'transactions' : self.current_transactions,
             'proof' : proof,
             'previous_hash' : previous_hash or self.hash(self.chain[-1]),
+
+            # info of prescription
             '_insurance' : _content['insurance'],
             '_nursesgin' : _content['nursing_institution_sign'],
             '_patientname' : _content['patient']['name'],
@@ -128,4 +130,4 @@ def full_chain():
     return jsonify(response), 200
         
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port= 5001)
+    app.run(host='0.0.0.0', port= 5001, debug=True)
