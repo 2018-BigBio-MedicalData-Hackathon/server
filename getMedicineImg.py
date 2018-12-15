@@ -5,6 +5,11 @@ from pprint import pprint as p
 import re
 from datetime import datetime
 
+"""
+호출방법 getImg(medicineName) || medicineName: 처방전에 쓰인 약품명. 1개만 가능. 리스트 불가능
+리턴 (약품명, 약품 이미지 링크)
+"""
+
 def getDriver(url):
     options = Options()
     #head less mode
@@ -44,10 +49,17 @@ def getImg(medicineName):
     data=soup.select('#tbl_proY > tbody > tr > td > img')#tbl_proY > tbody > tr:nth-child(2)
     
     for img in data:
-        return img.get("src")
+        return medicineName, img.get("src")
 
 if __name__ == '__main__':
     medicines=['프레드포르테점안액', '오큐시클로점안액', '솔로젠정', '록소젠정', '파모시드정20mg']
     for name in medicines:
-        print(name, getImg(name))
+        print(getImg(name))
+    """
+    >>> ('프레드포르테점안액', '/images/img_empty3.jpg')
+    >>> ('오큐시클로점안액', 'http://www.health.kr/images/ext_images/pack_img/P_A11ABBBBB0306_AA.jpg')
+    >>> ('솔로젠정', 'http://www.pharm.or.kr/images/sb_photo/big3/A11AMMMMM284404.jpg')
+    >>> ('록소젠정', 'http://www.pharm.or.kr/images/sb_photo/big3/A11AOOOOO319602.jpg')
+    >>> ('파모시드정20mg', 'http://www.pharm.or.kr/images/sb_photo/big3/A11A1330A007902.jpg')
+    """
     
