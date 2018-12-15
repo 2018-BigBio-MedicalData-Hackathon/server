@@ -16,7 +16,7 @@ def getName(codes):
     return result
 
 if __name__ == '__main__':
-    codes=['Z99.8','A01.3']
+    codes=['H208','A01.3']
     print(getName(codes))
     """ 출력 예시
     >>> [['Z99.8', '기타기능성기계및장치에의존', 'Dependenceonotherenablingmachinesanddevices']], 
