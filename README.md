@@ -136,7 +136,12 @@
 - RESPONSE
   - status : true / false
   - message : string
-
+```markdown
+{
+  status : false
+  message : "전송이 실패하였습니다."
+}
+```
 ### 환자 to 기관
 1. `post` 처방전 발급 /agency/prescription/
 
@@ -233,10 +238,13 @@
 - RESPONSE
   - status : true / false
   - message : string
-
-
-
-### 환자 to 환자
+example
+```markdown
+{
+  status : true
+  message : "전송이 완료 되었습니다."
+}
+```
   
 
 
