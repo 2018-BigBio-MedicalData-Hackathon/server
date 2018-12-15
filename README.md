@@ -48,9 +48,9 @@
        - 조제량
        - 조제년원일
      - 처방의 변경 수정 확인 대체시 그 내용 등
-   - RESPONSE
-     - status : true / false
-     - message : string
+  - RESPONSE
+    - status : true / false
+    - message : string
 
 2. `get` MRI 발급 /send/mri/`<userkey>`
 
@@ -68,9 +68,9 @@
      - 면허 종별 (의사)
      - 면허번호(제 53253 호)
      - 발급년월일
-   - RESPONSE
-     - status : true / false
-     - message : string
+  - RESPONSE
+    - status : true / false
+    - message : string
 
 
 
