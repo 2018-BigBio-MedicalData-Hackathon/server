@@ -4,6 +4,7 @@ from flask_restful import reqparse
 import config
 import random
 import hashlib
+import dbconnect
 
 app = Flask(__name__)
 api = Api(app)
