@@ -14,7 +14,7 @@
 
 1. `get` 처방전 발급 /send/prescription/`<userkey>`
 
-1. - REQUEST
+ - REQUEST
 
    - - 보험 여부 (의료보험 / 의료보험 / 산재보험 / 자동차보험 / 기타 )
      - 요양기관기호
@@ -54,7 +54,7 @@
 
 2. `get` MRI 발급 /send/mri/`<userkey>`
 
-2. - REQUEST
+ - REQUEST
      - 환자
        - 성명
        - 주민등록번호
