@@ -33,7 +33,7 @@ def makepasswd(passwd, salt):
     return _hash.hexdigest()
 
 
-class Login(Resource):
+class Signup(Resource):
     def post(self):
         try:
             # 지역변수로 로그인 폼 데이터 POST 받기 설정

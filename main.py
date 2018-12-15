@@ -5,7 +5,8 @@ from flask_jwt_extended import (
     get_jwt_identity
 )
 import agency
-# import account
+import signup
+import login
 # import license
 
 app = Flask(__name__)
@@ -15,16 +16,16 @@ jwt = JWTManager(app)
 
 Agency = agency.Agency
 # Auth = auth.Auth
-# Authverify = auth.Authverify
-# Account = account.Account
-# License = license.License
+# # Authverify = auth.Authverify
+Signup = signup.Signup
+Login = login.Login
 
 
 # api 라우팅 부분
 api.add_resource(Agency, '/agency')
 # api.add_resource(Authverify, '/auth/verify')
-# api.add_resource(Account, '/account')
-# api.add_resource(License, '/license')
+api.add_resource(Signup, '/signup')
+api.add_resource(Login, '/login')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
