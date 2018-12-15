@@ -4,14 +4,16 @@ from textwrap import dedent
 from time import time
 from uuid import uuid4
 from flask import Flask, jsonify, request
-        
+import dbdata
+
+DBdata = dbdata.result
 class Blockchain(object):
     def __init__(self):
         self.current_transactions=[]
         self.chain=[]
         _content=[]
         #genesis block 생성
-        self.new_block(previous_hash=1, _content=_content, proof=100)
+        self.new_block(previous_hash=1, _content=DBdata, proof=100)
         
     def new_block(self, proof, _content, previous_hash=None):
         """
@@ -21,44 +23,44 @@ class Blockchain(object):
         :return : <dict> 새로운 블록
         
         """
-        
-        block = {
-            # basic info of block
-            'index' : len(self.chain) + 1,
-            'timestamp' : time(),
-            'transactions' : self.current_transactions,
-            'proof' : proof,
-            'previous_hash' : previous_hash or self.hash(self.chain[-1]),
+        print(_content)
+        # block = {
+        #     # basic info of block
+        #     'index' : len(self.chain) + 1,
+        #     'timestamp' : time(),
+        #     'transactions' : self.current_transactions,
+        #     'proof' : proof,
+        #     'previous_hash' : previous_hash or self.hash(self.chain[-1]),
 
-            # info of prescription
-            '_insurance' : _content['insurance'],
-            '_nursesgin' : _content['nursing_institution_sign'],
-            '_patientname' : _content['patient']['name'],
-            '_patientreginum' : _content['patient']['registration_number'],
-            '_insname' : _content["medical_Institutions"]["name"],
-            '_insphonenum' : _content["medical_Institutions"]["phone_number"],
-            '_insfaxnum' : _content["medical_Institutions"]["fax_number"],
-            '_insemail' : _content["medical_Institutions"]["email_address"],
-            '_diseasecode1' : _content["disease_classification_codes"][0],
-            '_diseasecode2' : _content["disease_classification_codes"][1],
-            '_doctorname' : _content["sign_of_prescription_medical_practitioner"],
-            '_doctortype' : _content["license_type"],
-            '_doctornum' : _content["license_number"],
-            '_mediname' : [],
-            '_medidose' : [],
-            '_medidailydose' : [],
-            '_meditotalday' : [],
-            '_mediusage' : [],
-            '_mediinside' : [],
-            "_prescription_medicine" : [],
-            '_usepreiod' : _content["injection_prescription"]["period_of_use"],
-            '_dispensename' : _content["injection_prescription"]["preparation"]["name_of_dispenser"],
-            '_pharmacistname' : _content["injection_prescription"]["preparation"]["pharmacist"]["name"],
-            '_pharmacistseal' : _content["injection_prescription"]["preparation"]["pharmacist"]["seal"],
-            '_preparationamount' : _content["injection_prescription"]["preparation_amount"],
-            '_preparationyear' : _content["injection_prescription"]["year_of_preparation"],
-            '_changeprescription' : _content["injection_prescription"]["change_of_prescription"]
-        }
+        #     # info of prescription
+        #     '_insurance' : _content['insurance'],
+        #     '_nursesgin' : _content['nursing_institution_sign'],
+        #     '_patientname' : _content['patient']['name'],
+        #     '_patientreginum' : _content['patient']['registration_number'],
+        #     '_insname' : _content["medical_Institutions"]["name"],
+        #     '_insphonenum' : _content["medical_Institutions"]["phone_number"],
+        #     '_insfaxnum' : _content["medical_Institutions"]["fax_number"],
+        #     '_insemail' : _content["medical_Institutions"]["email_address"],
+        #     '_diseasecode1' : _content["disease_classification_codes"][0],
+        #     '_diseasecode2' : _content["disease_classification_codes"][1],
+        #     '_doctorname' : _content["sign_of_prescription_medical_practitioner"],
+        #     '_doctortype' : _content["license_type"],
+        #     '_doctornum' : _content["license_number"],
+        #     '_mediname' : [],
+        #     '_medidose' : [],
+        #     '_medidailydose' : [],
+        #     '_meditotalday' : [],
+        #     '_mediusage' : [],
+        #     '_mediinside' : [],
+        #     "_prescription_medicine" : [],
+        #     '_usepreiod' : _content["injection_prescription"]["period_of_use"],
+        #     '_dispensename' : _content["injection_prescription"]["preparation"]["name_of_dispenser"],
+        #     '_pharmacistname' : _content["injection_prescription"]["preparation"]["pharmacist"]["name"],
+        #     '_pharmacistseal' : _content["injection_prescription"]["preparation"]["pharmacist"]["seal"],
+        #     '_preparationamount' : _content["injection_prescription"]["preparation_amount"],
+        #     '_preparationyear' : _content["injection_prescription"]["year_of_preparation"],
+        #     '_changeprescription' : _content["injection_prescription"]["change_of_prescription"]
+        # }
         
         # 거래 내역 초기화
         self.current_transactions = []
