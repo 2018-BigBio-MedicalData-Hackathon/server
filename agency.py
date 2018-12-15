@@ -23,37 +23,11 @@ class Agency(Resource):
     #병원이 보내는 처방전 서버에 저장하기
     def post(self):
         try:
-            # 지역변수로 POST 받기 설정
-            # _parser = reqparse.RequestParser()
-            # _parser.add_argument('username', type=str)
-            # _parser.add_argument('password', type=str)
-            # _args = _parser.parse_args()
-            print(1)
-            # _username = _args['username']
-            # _password = _args['password']
-            _result = request.get_json()
-            # 아이디 중복확인
-            # _query = "SELECT 1 FROM user WHERE username='%s'" % (_username)
-            # cursor.execute(_query)
-            # _data = cursor.fetchall()
-            # if _data:
-            #     return {"Duplicated id": 404}
-            # else:
-            #     # 회원가입
-            #     _query = "INSERT INTO user(username,passwd,permission,salt) values(%s,%s,%s,%s)"
-            #     _salt = salt()  # salt 생성
-
-            #     _password = makepasswd(_password, _salt)  # 암호화
-            #     _value = (_username, _password, 0, _salt)
-            #     cursor.execute(_query, _value)
-            #     _data = cursor.fetchall()
-            #     if not _data:
-            #         conn.commit()
-            #         return {"Register Success": 200}
-            #     else:
-            #         conn.rollback()
-            #         return {"Register Failed": 404}
-            print(_result)
+            # json 데이터 post로 받기
+            _content = request.get_json()
+            _insurance = _content['insurance']
+            _nursesgin = _content['nursing_institution_sign']
+            print(_nursesgin)
             return {'su': 200}
 
         except Exception as e:
