@@ -27,6 +27,8 @@ class Agency(Resource):
             _content = request.get_json()
             _insurance = _content['insurance']
             _nursesgin = _content['nursing_institution_sign']
+            _patientname = _content['patient']['name']
+            _patientreginum = _content['patient']['registration_number']
             print(_nursesgin)
             return {'su': 200}
 

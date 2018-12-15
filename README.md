@@ -65,7 +65,7 @@
       "name" : "박채현",
       "registration_number" : "930483-2285734"
     },
-    "medical Institutions" : {
+    "medical_Institutions" : {
       "name" : "서울대병원",
       "phone_number" : "010-8111-8888",
       "Fax_number" : "02-853-4444",
