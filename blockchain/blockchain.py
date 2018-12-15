@@ -13,7 +13,8 @@ class Blockchain(object):
         self.chain=[]
         _content=[]
         #genesis block 생성
-        self.new_block(previous_hash=1, _content=DBdata, proof=100)
+        for data in DBdata:
+            self.new_block(previous_hash=1, _content=data, proof=100)
         
     def new_block(self, proof, _content, previous_hash=None):
         """
@@ -24,45 +25,44 @@ class Blockchain(object):
         
         """
         print(_content)
-        # block = {
-        #     # basic info of block
-        #     'index' : len(self.chain) + 1,
-        #     'timestamp' : time(),
-        #     'transactions' : self.current_transactions,
-        #     'proof' : proof,
-        #     'previous_hash' : previous_hash or self.hash(self.chain[-1]),
+        block = {
+            # basic info of block
+            'index' : len(self.chain) + 1,
+            'timestamp' : time(),
+            'transactions' : self.current_transactions,
+            'proof' : proof,
+            'previous_hash' : previous_hash or self.hash(self.chain[-1]),
 
-        #     # info of prescription
-        #     '_insurance' : _content['insurance'],
-        #     '_nursesgin' : _content['nursing_institution_sign'],
-        #     '_patientname' : _content['patient']['name'],
-        #     '_patientreginum' : _content['patient']['registration_number'],
-        #     '_insname' : _content["medical_Institutions"]["name"],
-        #     '_insphonenum' : _content["medical_Institutions"]["phone_number"],
-        #     '_insfaxnum' : _content["medical_Institutions"]["fax_number"],
-        #     '_insemail' : _content["medical_Institutions"]["email_address"],
-        #     '_diseasecode1' : _content["disease_classification_codes"][0],
-        #     '_diseasecode2' : _content["disease_classification_codes"][1],
-        #     '_doctorname' : _content["sign_of_prescription_medical_practitioner"],
-        #     '_doctortype' : _content["license_type"],
-        #     '_doctornum' : _content["license_number"],
-        #     '_mediname' : [],
-        #     '_medidose' : [],
-        #     '_medidailydose' : [],
-        #     '_meditotalday' : [],
-        #     '_mediusage' : [],
-        #     '_mediinside' : [],
-        #     "_prescription_medicine" : [],
-        #     '_usepreiod' : _content["injection_prescription"]["period_of_use"],
-        #     '_dispensename' : _content["injection_prescription"]["preparation"]["name_of_dispenser"],
-        #     '_pharmacistname' : _content["injection_prescription"]["preparation"]["pharmacist"]["name"],
-        #     '_pharmacistseal' : _content["injection_prescription"]["preparation"]["pharmacist"]["seal"],
-        #     '_preparationamount' : _content["injection_prescription"]["preparation_amount"],
-        #     '_preparationyear' : _content["injection_prescription"]["year_of_preparation"],
-        #     '_changeprescription' : _content["injection_prescription"]["change_of_prescription"]
-        # }
+            # info of prescription
+            '_insurance' : _content['insurance'],
+            '_nursesgin' : _content['nursesgin'],
+            '_patientname' : _content['patientname'],
+            '_patientreginum' : _content['patientreginum'],
+            '_insname' : _content["insname"],
+            '_insphonenum' : _content["insphonenum"],
+            '_insfaxnum' : _content["insfaxnum"],
+            '_insemail' : _content["insemail"],
+            '_diseasecode1' : _content["diseasecode1"],
+            '_diseasecode2' : _content["diseasecode2"],
+            '_doctorname' : _content["doctorname"],
+            '_doctortype' : _content["doctortype"],
+            '_doctornum' : _content["doctornum"],
+            '_mediname' : _content["mediname"],
+            '_medidose' : _content["medidose"],
+            '_medidailydose' : _content["medidailydose"],
+            '_meditotalday' : _content["meditotalday"],
+            '_mediusage' : _content["mediusage"],
+            '_mediinside' : _content["mediinside"],
+            '_usepreiod' : _content["usepreiod"],
+            '_dispensename' : _content["dispensename"],
+            '_pharmacistname' : _content["pharmacistname"],
+            '_pharmacistseal' : _content["pharmacistseal"],
+            '_preparationamount' : _content["preparationamount"],
+            '_preparationyear' : _content["preparationyear"],
+            '_changeprescription' : _content["changeprescription"]
+        }
         
-        # 거래 내역 초기화
+        #거래 내역 초기화
         self.current_transactions = []
         
         self.chain.append(block)
