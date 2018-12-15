@@ -41,21 +41,21 @@ class Login(Resource):
             _parser.add_argument('user_id', type=str)
             _parser.add_argument('user_pw', type=str)
             _args = _parser.parse_args()
-
+            print(_args)
             # 변수에 할당
-            _userid = conn.escape_string(_args['user_id'])
-            _password = conn.escape_string(_args['user_pw'])
+            _userid = _args['user_id']
+            _password = _args['user_pw']
 
             # salt 데이터베이스에서 가져오기
-            _query = "select salt from user where userid='%s'" % (_userid)
+            _query = "select salt from user where user_id='%s'" % (_userid)
             cursor.execute(_query)
             _data = cursor.fetchone()
             _salt = _data[0]
-
+            print(_salt)
             # 회원 id verify
             _password = makepasswd(_password, _salt)
             print(_userid, _password)
-            _query = "select userid from user where passwd='%s'" % (_password)
+            _query = "select user_id from user where user_pw='%s'" % (_password)
             cursor.execute(_query)
             _data = cursor.fetchone()
             print(_data[0])
@@ -63,9 +63,10 @@ class Login(Resource):
                 return {"id and password are wrong": 401}
 
             # 회원 password verify 
-            _query = "select password from user where id='%s'" % (_userid)
+            _query = "select user_pw from user where user_id=%s" % (_userid)
             cursor.execute(_query)
             newpassword = cursor.fetchone()[0]
+            print(newpassword)
             if(_password == newpassword):
                 print("login success")
                 return {"login Success": 200}
