@@ -5,6 +5,7 @@ from time import time
 from uuid import uuid4
 from flask import Flask, jsonify, request
 import dbdata
+import random
 
 DBdata = dbdata.result
 class Blockchain(object):
@@ -15,7 +16,14 @@ class Blockchain(object):
         #genesis block 생성
         for data in DBdata:
             self.new_block(previous_hash=1, _content=data, proof=100)
-        
+    def salt(self):
+        alphabet = "0123456789abcdefghijklmnopqrstuvwxyz" + \
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%()"
+        chars = []
+        for i in range(32):
+            chars.append(random.choice(alphabet))
+
+        return "".join(chars)
     def new_block(self, proof, _content, previous_hash=None):
         """
         블록체인에 새로운 블록 만들기 
@@ -27,6 +35,7 @@ class Blockchain(object):
         print(_content)
         block = {
             # basic info of block
+            'hash' : self.salt(),
             'index' : len(self.chain) + 1,
             'timestamp' : time(),
             'transactions' : self.current_transactions,
@@ -35,7 +44,7 @@ class Blockchain(object):
 
             # info of prescription
             '_insurance' : _content['insurance'],
-            '_nursesgin' : _content['nursesgin'],
+            '_nursesgin' : _content['nursesign'],
             '_patientname' : _content['patientname'],
             '_patientreginum' : _content['patientreginum'],
             '_insname' : _content["insname"],
