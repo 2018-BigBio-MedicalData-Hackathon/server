@@ -12,7 +12,7 @@
 
 ### 기관 to 환자
 
-1. `get` 처방전 발급 /send/prescription/`<userkey>`
+1. `get` 처방전 발급 /send/prescription/
 
  - REQUEST
 
@@ -52,7 +52,7 @@
     - status : true / false
     - message : string
 
-2. `get` MRI 발급 /send/mri/`<userkey>`
+2. `get` MRI 발급 /send/mri/
 
  - REQUEST
    - 환자
@@ -69,8 +69,8 @@
    - 면허번호(제 53253 호)
    - 발급년월일
   - RESPONSE
-   - status : true / false
-   - message : string
+    - status : true / false
+    - message : string
 
 
 
