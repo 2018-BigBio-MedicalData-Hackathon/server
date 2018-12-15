@@ -8,6 +8,7 @@ from flask_cors import CORS
 import agency
 import signup
 import login
+import person
 # import license
 
 app = Flask(__name__)
@@ -18,14 +19,14 @@ jwt = JWTManager(app)
 
 Agency = agency.Agency
 # Auth = auth.Auth
-# # Authverify = auth.Authverify
+Person = person.Person
 Signup = signup.Signup
 Login = login.Login
 
 
 # api 라우팅 부분
 api.add_resource(Agency, '/agency')
-# api.add_resource(Authverify, '/auth/verify')
+api.add_resource(Person, '/person')
 api.add_resource(Signup, '/signup')
 api.add_resource(Login, '/login')
 
