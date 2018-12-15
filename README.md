@@ -59,54 +59,54 @@
   ```markdown
   {
     "insurance" : "1" ,//1 - 의료보험, 2 - 의료급여, 3 - 산재보험, 4 - 자동차보험, 5 - 기타 )
-    "nursing institution sign" : "346454",
-    "grant number" : "2018년 12월 16일 ~ 제 01232호",
+    "nursing_institution_sign" : "346454",
+    "grant_number" : "2018년 12월 16일 ~ 제 01232호",
     "patient" : {
       "name" : "박채현",
-      "registration number" : "930483-2285734"
+      "registration_number" : "930483-2285734"
     },
     "medical Institutions" : {
       "name" : "서울대병원",
-      "phone number" : "010-8111-8888",
-      "Fax number" : "02-853-4444",
-      "email address" : "snubi@snu.ac.kr"
+      "phone_number" : "010-8111-8888",
+      "Fax_number" : "02-853-4444",
+      "email_address" : "snubi@snu.ac.kr"
     },
-    "disease classification codes" : [{
+    "disease_classification_codes" : [{
       "code" : "H208"
     },{
       "code" : "A01"
     }],
-    "sign of prescription medical practitioner" : "김의사",
-    "license type" : "의사",
-    "license number" : "AA45235TB2",
-    "prescription medicine" : [{
-      "name of medicines" : "솔로젠정",
-      "one dose" : "2",
-      "number of daily doses" : "3",
-      "total dosing days" :"2",
+    "sign_of_prescription_medical_practitioner" : "김의사",
+    "license_type" : "의사",
+    "license_number" : "AA45235TB2",
+    "prescription_medicine" : [{
+      "name_of_medicines" : "솔로젠정",
+      "one_dose" : "2",
+      "number_of_daily_doses" : "3",
+      "total_dosing_days" :"2",
       "usage" : "식후30분",
       "inside" : true
     },  {
-      "name of medicines" : "프레드포르테점안액",
-      "one dose" : "0.8333",
-      "number of daily doses" : "6",
-      "total dosing days" :"1",
+      "name_of_medicines" : "프레드포르테점안액",
+      "one_dose" : "0.8333",
+      "number_of_daily_doses" : "6",
+      "total_dosing_days" :"1",
       "usage" : "2시간마다",
       "inside" : false
     }],
-    "injection prescription" :[{
+    "injection_prescription" :[{
     
-    "period of use" : "3",
+    "period_of_use" : "3",
     "preparation" : {
-      "name of dispenser" : "서울약국",
+      "name_of_dispenser" : "서울약국",
       "pharmacist" : {
         "name" : "김약사",
         "seal" : "/seal/kimStamp.img"
       },
-      "preparation amount" : "7",
-      "year of preparation" : "2018년 12월 16일"
+      "preparation_amount" : "7",
+      "year_of_preparation" : "2018년 12월 16일"
     },
-    "change of prescription" : ""
+    "change_of_prescription" : ""
   }]
 }
   ```
